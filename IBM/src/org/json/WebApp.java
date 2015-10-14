@@ -41,13 +41,13 @@ import javax.swing.JTextField;
 
 public class WebApp extends JFrame {
 	private JTextField textField;									// A text field to hold the name of the city or the zip code
-	private JTextArea textArea;										// A text area to display the information queried from the API
-	private JLabel label;											// A label which indicates what is required to be inputted into the text area
-	private JButton button1;										// A button to indicate that the weather required should be in Celcius unit
-	private JButton button2;										// A button to indicate that the weather required should be in Fahrenheit unit
-	private JButton button3;										// A button to indicate that the weather required should be in Kelvin unit	
-	private JLabel map;												// A label which holds the map of the required city or zip code
-	static int counter=0;											// A counter to indicate how many times has the API been queried
+	private JTextArea textArea;									// A text area to display the information queried from the API
+	private JLabel label;										// A label which indicates what is required to be inputted into the text area
+	private JButton button1;									// A button to indicate that the weather required should be in Celcius unit
+	private JButton button2;									// A button to indicate that the weather required should be in Fahrenheit unit
+	private JButton button3;									// A button to indicate that the weather required should be in Kelvin unit	
+	private JLabel map;										// A label which holds the map of the required city or zip code
+	static int counter=0;										// A counter to indicate how many times has the API been queried
 	
 	/**
 	 * The Constructor
@@ -56,21 +56,21 @@ public class WebApp extends JFrame {
 	 */
 	
 	public WebApp(){
-		super("Weatherpedia!");										// The name of the Application
+		super("Weatherpedia!");									// The name of the Application
 		setLayout(new FlowLayout());								// Using the FlowLayout style
 		
 		textField=new JTextField(20);								// Declaring the text field
 		textArea=new JTextArea(5,60);								// Declaring the text area
-		label=new JLabel("City/Zip Code: ");						// Declaring the label
+		label=new JLabel("City/Zip Code: ");							// Declaring the label
 		button1=new JButton("Celcius");								// Declaring the Celcius button
 		button2=new JButton("Fahrenheit");							// Declaring the Fahrenheit button
 		button3=new JButton("Kelvin");								// Declaring the Kelvin button
 		add(label);													// Adding the label to the Application
-		add(textField);												// Adding the text field to the Application
-		add(button1);												// Adding the Celcius button to the Application
-		add(button2);												// Adding the Fahrenheit button to the Application
-		add(button3);												// Adding the Kelvin button to the Application
-		add(textArea);												// Adding the text area to the Application
+		add(textField);										// Adding the text field to the Application
+		add(button1);										// Adding the Celcius button to the Application
+		add(button2);										// Adding the Fahrenheit button to the Application
+		add(button3);										// Adding the Kelvin button to the Application
+		add(textArea);										// Adding the text area to the Application
 		
 		
 		button1.addActionListener(new ActionListener(){
@@ -78,7 +78,7 @@ public class WebApp extends JFrame {
 				String input=textField.getText();					// String input stores the value in the text field
 				String degreeOfMeasurement = "Celcius";
 				try {
-					getData(input, degreeOfMeasurement);			// method call to the getData() method
+					getData(input, degreeOfMeasurement);				// method call to the getData() method
 				} catch (JSONException | IOException e) {
 					e.printStackTrace();
 				}
@@ -90,7 +90,7 @@ public class WebApp extends JFrame {
 				String input=textField.getText();					// String input stores the value in the text field
 				String degreeOfMeasurement = "Fahrenheit";
 				try {
-					getData(input, degreeOfMeasurement);			// method call to the getData() method
+					getData(input, degreeOfMeasurement);				// method call to the getData() method
 				} catch (JSONException | IOException e) {
 					e.printStackTrace();
 				}
@@ -102,7 +102,7 @@ public class WebApp extends JFrame {
 				String input=textField.getText();					// String input stores the value in the text field
 				String degreeOfMeasurement = "Kelvin";
 				try {
-					getData(input, degreeOfMeasurement);			// method call to the getData() method
+					getData(input, degreeOfMeasurement);				// method call to the getData() method
 				} catch (JSONException | IOException e) {
 					e.printStackTrace();
 				}
@@ -118,13 +118,13 @@ public class WebApp extends JFrame {
 	
 	public void getData(String input, String degreeOfMeasurement) throws JSONException, IOException{
 		if(counter != 0){
-			remove(map);											// Reset the map to that of the new city or zip code
+			remove(map);									// Reset the map to that of the new city or zip code
 		}
     	if(input.contains(" ")){
-    		input = input.replaceAll(" ", "_");						// Checking for cities with two letters, for example, New York
+    		input = input.replaceAll(" ", "_");							// Checking for cities with two letters, for example, New York
     	}
-    	degreeOfMeasurement=degreeOfMeasurement.toLowerCase();		// converting the temperature measurement unit to lower case
-    	boolean flag=isNumber(input);								// Calling the isNumber() method
+    	degreeOfMeasurement=degreeOfMeasurement.toLowerCase();						// converting the temperature measurement unit to lower case
+    	boolean flag=isNumber(input);									// Calling the isNumber() method
     	URL url = null;
     	
     	/*
@@ -214,14 +214,14 @@ public class WebApp extends JFrame {
 		String minimumTemperature = minTemp.toString();
 		String maximumTemperature = maxTemp.toString();
        
-        JSONObject json=new JSONObject();							// Creating a new JSON Object
-        json.put("current_condition", s1.substring(0, ind1));		// Storing the current condition 
-        json.put("lon", t.substring(ind2+5, ind3-2));				// Storing the longitude
-        json.put("lat", t.substring(ind3+5, t.length()-1));			// Storing the latitude
-        json.put("temp", currentTemperature.substring(0, 5));		// Storing the current temperature
-        json.put("min_temp", minimumTemperature.substring(0, 5));	// Storing the minimum temperature
-        json.put("max_temp", maximumTemperature.substring(0, 5));	// Storing the maximum temperature
-        String output=json.toString();								// Converting from json object to string
+        JSONObject json=new JSONObject();								// Creating a new JSON Object
+        json.put("current_condition", s1.substring(0, ind1));						// Storing the current condition 
+        json.put("lon", t.substring(ind2+5, ind3-2));							// Storing the longitude
+        json.put("lat", t.substring(ind3+5, t.length()-1));						// Storing the latitude
+        json.put("temp", currentTemperature.substring(0, 5));						// Storing the current temperature
+        json.put("min_temp", minimumTemperature.substring(0, 5));					// Storing the minimum temperature
+        json.put("max_temp", maximumTemperature.substring(0, 5));					// Storing the maximum temperature
+        String output=json.toString();									// Converting from json object to string
         textArea.setText(output);									// Printing the output in the text area
         
         /*
@@ -240,14 +240,14 @@ public class WebApp extends JFrame {
         	os.write(b, 0, length);									// Writing to the outputstream
         }
         
-        is.close();													// Closing the inputstream
-        os.close();													// Closing the outputstream
+        is.close();											// Closing the inputstream
+        os.close();											// Closing the outputstream
         
         map=new JLabel(new ImageIcon((new ImageIcon("map.jpg")).getImage().getScaledInstance(450, 300,
                 java.awt.Image.SCALE_SMOOTH)));
-        add(map);													// Adding the map of the region to the Application
+        add(map);											// Adding the map of the region to the Application
         
-        counter++;													// Keeping track of the number of times the API has been queried
+        counter++;											// Keeping track of the number of times the API has been queried
     }
 	
 	/**
