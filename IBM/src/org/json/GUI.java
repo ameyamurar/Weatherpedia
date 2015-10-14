@@ -32,7 +32,7 @@ public class GUI {
 	public static void main(String[] args) throws Exception {
     	WebApp app=new WebApp();
     	app.setSize(700,500);								// set the size of the frame to 700*500
-    	app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// when the 'X' is clicked, it will close the frame
+    	app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				// when the 'X' is clicked, it will close the frame
     	app.setVisible(true);
     }
 }
